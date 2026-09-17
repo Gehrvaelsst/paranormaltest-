@@ -1,498 +1,953 @@
+/* ======================================================
+   SIGA O SANGUE — STYLE.CSS
+   ====================================================== */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
-    background: #050505;
+    background:
+        radial-gradient(circle at center, #210707 0%, #0d0303 45%, #050101 100%);
     color: #eeeeee;
     font-family: Georgia, "Times New Roman", serif;
-    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-button {
-    font-family: inherit;
-}
+/* ======================================================
+   ÁREA PRINCIPAL
+   ====================================================== */
 
 #game {
+    width: 100%;
     min-height: 100vh;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(100, 0, 0, 0.18),
-            transparent 55%
-        ),
-        #050505;
 }
+
+/* ======================================================
+   TELAS
+   ====================================================== */
 
 .screen {
     display: none;
+
+    width: 100%;
     min-height: 100vh;
-    padding: 40px 20px;
-    justify-content: center;
+
+    padding: 50px 25px;
+
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+
+    animation: screenAppear 0.5s ease;
 }
 
 .screen.active {
     display: flex;
 }
 
+@keyframes screenAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
 
-/* =========================
-   INTRO
-========================= */
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-#intro {
+/* ======================================================
+   TÍTULOS
+   ====================================================== */
+
+h1,
+h2,
+h3 {
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
     text-align: center;
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.75),
-            rgba(0,0,0,0.92)
-        );
 }
 
-.intro-symbol {
-    color: #b30000;
-    font-size: 75px;
-    margin-bottom: 20px;
-    text-shadow:
-        0 0 20px rgba(180,0,0,0.6);
+h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    text-align: center;
 }
 
-#intro h1 {
-    font-size: clamp(38px, 10vw, 75px);
-    letter-spacing: 8px;
-    color: #b00000;
-    text-shadow:
-        0 0 15px rgba(180,0,0,0.5);
+.small-title {
+    color: #8d8d8d;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
 }
 
-.subtitle {
-    margin-top: 18px;
-    color: #999;
-    font-size: 16px;
-    font-style: italic;
+.description {
+    color: #aaa;
+    line-height: 1.7;
 }
 
-
-/* =========================
+/* ======================================================
    BOTÕES
-========================= */
+   ====================================================== */
+
+button {
+    font-family: inherit;
+}
 
 .main-button {
     margin-top: 35px;
+
     padding: 15px 35px;
 
-    border: 1px solid #9b0000;
-    background: #0b0b0b;
-    color: #ddd;
+    background: transparent;
+    color: #eeeeee;
+
+    border: 1px solid #8d1616;
 
     cursor: pointer;
 
+    font-size: 0.9rem;
     letter-spacing: 3px;
-    font-size: 14px;
 
-    transition: 0.25s;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .main-button:hover {
-    background: #7d0000;
-    color: white;
-    box-shadow:
-        0 0 20px rgba(180,0,0,0.35);
+    background: #8d1616;
+    border-color: #b51e1e;
+
+    box-shadow: 0 0 25px rgba(150, 20, 20, 0.3);
+
+    transform: translateY(-2px);
 }
 
-.back-button {
-    align-self: flex-start;
+.main-button:active {
+    transform: translateY(0);
+}
 
-    border: none;
-    background: none;
-    color: #777;
+/* ======================================================
+   TELA INICIAL
+   ====================================================== */
 
-    cursor: pointer;
+#intro {
+    text-align: center;
+}
 
-    font-size: 15px;
+.intro-symbol {
+    font-size: 4rem;
+
+    color: #9e1717;
+
     margin-bottom: 25px;
+
+    animation: pulseBlood 3s infinite;
 }
 
-.back-button:hover {
-    color: #d00000;
+#intro h1 {
+    color: #eeeeee;
+
+    text-shadow:
+        0 0 10px rgba(150, 0, 0, 0.3),
+        0 0 35px rgba(100, 0, 0, 0.2);
 }
 
+.subtitle {
+    margin-top: 20px;
 
-/* =========================
-   ELEMENTOS
-========================= */
+    color: #888;
+
+    font-size: 1rem;
+    font-style: italic;
+}
+
+@keyframes pulseBlood {
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+/* ======================================================
+   ESCOLHA DOS ELEMENTOS
+   ====================================================== */
 
 #elements {
     text-align: center;
 }
 
-.small-title {
-    color: #666;
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-bottom: 12px;
+#elements h2 {
+    margin-bottom: 15px;
 }
 
-#elements h2,
-#characters h2 {
-    font-size: clamp(28px, 7vw, 50px);
-    letter-spacing: 4px;
+#elements > .description {
+    max-width: 600px;
+    margin-bottom: 45px;
 }
 
-.description {
-    max-width: 500px;
-    color: #777;
-    margin-top: 12px;
-}
+/* ======================================================
+   GRID DOS ELEMENTOS
+   ====================================================== */
 
 .elements-grid {
-    width: 100%;
-    max-width: 850px;
+    width: min(100%, 900px);
 
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
 
-    gap: 15px;
-
-    margin-top: 40px;
+    gap: 20px;
 }
 
 .element {
-    min-height: 180px;
+    min-height: 210px;
 
-    background: #0a0a0a;
+    padding: 30px 20px;
 
-    border: 1px solid #252525;
+    background: rgba(20, 20, 20, 0.65);
 
-    color: #ddd;
+    border: 1px solid #333;
+
+    color: #eee;
 
     cursor: pointer;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
-
-    transition: 0.3s;
-}
-
-.element:hover:not(.locked) {
-    transform: translateY(-4px);
-}
-
-.element-symbol {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
-
-.element strong {
-    letter-spacing: 3px;
-    font-size: 16px;
-}
-
-.element small {
-    margin-top: 8px;
-    color: #666;
-}
-
-.blood {
-    border-color: #650000;
-}
-
-.blood:hover {
-    background: #180000;
-    border-color: #c00000;
-    box-shadow:
-        0 0 25px rgba(150,0,0,0.25);
-}
-
-.blood .element-symbol {
-    color: #d00000;
-}
-
-.locked {
-    opacity: 0.35;
-    cursor: not-allowed;
-}
-
-
-/* =========================
-   PERSONAGENS
-========================= */
-
-#characters {
-    text-align: center;
-}
-
-.section-header {
-    margin-bottom: 30px;
-}
-
-.blood-title {
-    color: #b00000;
-    text-shadow:
-        0 0 12px rgba(180,0,0,0.4);
-}
-
-.character-grid {
-    width: 100%;
-    max-width: 1000px;
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 18px;
-}
-
-.character-card {
-    background:
-        linear-gradient(
-            145deg,
-            #111,
-            #070707
-        );
-
-    border: 1px solid #272727;
-
-    padding: 20px;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-}
-
-.character-card:hover {
-    border-color: #8d0000;
-    transform: translateY(-3px);
-}
-
-.sprite {
-    height: 150px;
-
-    display: flex;
     justify-content: center;
-    align-items: center;
 
-    margin-bottom: 15px;
+    gap: 10px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.element:hover {
+    transform: translateY(-5px);
+
+    border-color: #777;
+
+    background: rgba(35, 35, 35, 0.8);
+}
+
+/* ======================================================
+   ELEMENTO SANGUE
+   ====================================================== */
+
+.element.blood {
+    border-color: #701010;
 
     background:
         radial-gradient(
             circle,
-            rgba(100,0,0,0.18),
-            transparent 65%
+            rgba(100, 10, 10, 0.25),
+            rgba(15, 5, 5, 0.7)
         );
 }
 
-.sprite-body {
-    position: relative;
+.element.blood:hover {
+    border-color: #b51d1d;
 
-    width: 55px;
-    height: 85px;
-
-    background: #151515;
-
-    border: 2px solid #555;
-
-    border-radius: 10px 10px 7px 7px;
+    box-shadow:
+        0 0 25px rgba(150, 15, 15, 0.25);
 }
 
-.sprite-body::before {
-    content: "";
+.element-symbol {
+    font-size: 2.7rem;
 
-    position: absolute;
-
-    width: 35px;
-    height: 35px;
-
-    background: #b88c72;
-
-    border-radius: 50%;
-
-    left: 8px;
-    top: -30px;
-
-    border: 2px solid #222;
+    margin-bottom: 5px;
 }
 
-.sprite-body::after {
-    content: "";
-
-    position: absolute;
-
-    width: 70px;
-    height: 8px;
-
-    background: #222;
-
-    left: -10px;
-    top: 35px;
+.element.blood .element-symbol {
+    filter: grayscale(0.2);
 }
 
-.character-card h3 {
-    color: #eee;
-    letter-spacing: 2px;
-}
+.element strong {
+    font-size: 1.2rem;
 
-.character-card .age {
-    color: #777;
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-.character-card .trait {
-    margin-top: 12px;
-    color: #a80000;
-    font-size: 14px;
-}
-
-.character-card .quote {
-    margin-top: 10px;
-    color: #888;
-    font-size: 13px;
-    font-style: italic;
-}
-
-
-/* =========================
-   FICHA
-========================= */
-
-#characterInfo {
-    max-width: 800px;
-    margin: auto;
-}
-
-#characterDetails {
-    width: 100%;
-    background: #090909;
-    border: 1px solid #300000;
-    padding: 30px;
-}
-
-.profile {
-    text-align: center;
-}
-
-.profile .big-sprite {
-    margin: 20px auto;
-
-    width: 100px;
-    height: 150px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile h2 {
-    color: #c00000;
-    font-size: 32px;
     letter-spacing: 3px;
 }
 
-.profile .profile-age {
-    color: #777;
-    margin-top: 8px;
+.element small {
+    color: #999;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
 }
 
-.profile-quote {
-    margin: 25px auto;
-    max-width: 500px;
+/* ======================================================
+   ELEMENTOS BLOQUEADOS
+   ====================================================== */
+
+.element.locked {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    filter: grayscale(1);
+}
+
+.element.locked:hover {
+    transform: none;
+
+    border-color: #333;
+
+    background: rgba(20, 20, 20, 0.65);
+
+    box-shadow: none;
+}
+
+/* ======================================================
+   CABEÇALHO DOS PERSONAGENS
+   ====================================================== */
+
+.section-header {
+    width: 100%;
+    max-width: 1000px;
+
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.section-header > p:last-child {
+    margin-top: 12px;
+
+    color: #888;
+
+    font-style: italic;
+}
+
+.blood-title {
+    color: #b51d1d;
+
+    text-shadow:
+        0 0 15px rgba(150, 0, 0, 0.25);
+}
+
+/* ======================================================
+   GRID DOS PERSONAGENS
+   ====================================================== */
+
+.character-grid {
+    width: min(100%, 1100px);
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+/* ======================================================
+   CARD DO PERSONAGEM
+   ====================================================== */
+
+.character-card {
+    min-height: 350px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(30, 30, 30, 0.9),
+            rgba(10, 5, 5, 0.95)
+        );
+
+    border: 1px solid #333;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.character-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #8d1616;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(120, 0, 0, 0.15);
+}
+
+/* ======================================================
+   IMAGEM DO PERSONAGEM
+   ====================================================== */
+
+.character-image-container {
+    width: 100%;
+    height: 240px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center bottom,
+            rgba(110, 15, 15, 0.18),
+            rgba(5, 5, 5, 0.8) 70%
+        );
+
+    border-bottom: 1px solid #292929;
+}
+
+.character-image {
+    width: auto;
+    height: 225px;
+
+    max-width: 90%;
+
+    object-fit: contain;
+
+    image-rendering: pixelated;
+
+    display: block;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.character-card:hover .character-image {
+    transform: scale(1.04);
+}
+
+/* ======================================================
+   INFORMAÇÕES DO CARD
+   ====================================================== */
+
+.character-info {
+    width: 100%;
+
+    padding: 18px;
+
+    text-align: center;
+}
+
+.character-trait {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #b51d1d;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+}
+
+.character-info h3 {
+    font-size: 1.15rem;
+
+    margin-bottom: 8px;
+
+    color: #eee;
+}
+
+.character-info p {
+    color: #777;
+
+    font-size: 0.8rem;
+}
+
+/* ======================================================
+   FICHA DO PERSONAGEM
+   ====================================================== */
+
+#characterInfo {
+    position: relative;
+
+    padding-top: 80px;
+}
+
+.back-button {
+    position: absolute;
+
+    top: 30px;
+    left: 30px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #888;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 2px;
+
+    transition:
+        color 0.3s ease;
+}
+
+.back-button:hover {
+    color: #d22;
+}
+
+/* ======================================================
+   PERFIL
+   ====================================================== */
+
+.character-profile {
+    width: min(100%, 900px);
+
+    display: grid;
+
+    grid-template-columns: 320px 1fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+/* ======================================================
+   IMAGEM DA FICHA
+   ====================================================== */
+
+.profile-image {
+    width: 320px;
+    height: 420px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center bottom,
+            rgba(120, 10, 10, 0.25),
+            rgba(5, 5, 5, 0.9) 70%
+        );
+
+    border: 1px solid #3b1515;
+}
+
+.profile-image img {
+    width: auto;
+    height: 390px;
+
+    max-width: 95%;
+
+    object-fit: contain;
+
+    image-rendering: pixelated;
+}
+
+/* ======================================================
+   TEXTO DA FICHA
+   ====================================================== */
+
+.profile-text h1 {
+    text-align: left;
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+
+    margin-bottom: 10px;
+}
+
+.profile-trait {
+    display: inline-block;
+
+    color: #b51d1d;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+}
+
+.profile-data {
+    color: #777;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 25px;
+}
+
+.quote {
+    padding-left: 15px;
+
+    border-left: 2px solid #8d1616;
+
+    color: #bbb;
+
+    font-style: italic;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.profile-text .description {
+    margin-bottom: 25px;
 
     color: #aaa;
 
-    font-style: italic;
     line-height: 1.7;
 }
 
-.profile-section {
-    border-top: 1px solid #222;
-    padding-top: 18px;
-    margin-top: 18px;
+/* ======================================================
+   HABILIDADE
+   ====================================================== */
+
+.ability {
+    padding: 20px;
+
+    border: 1px solid #3b1515;
+
+    background: rgba(80, 5, 5, 0.12);
 }
 
-.profile-section h3 {
-    color: #9e0000;
-    font-size: 13px;
+.ability strong {
+    color: #c42121;
+
+    font-size: 0.9rem;
+
     letter-spacing: 2px;
-    margin-bottom: 8px;
 }
 
-.profile-section p {
-    color: #aaa;
-    line-height: 1.6;
+.ability p {
+    margin-top: 8px;
+
+    color: #999;
+
+    line-height: 1.5;
+
+    font-size: 0.9rem;
 }
 
+/* ======================================================
+   BOTÃO DE CONFIRMAÇÃO
+   ====================================================== */
 
-/* =========================
-   INÍCIO
-========================= */
+#confirmCharacter {
+    margin-top: 45px;
+}
+
+/* ======================================================
+   INÍCIO DO JOGO
+   ====================================================== */
 
 .game-start-content {
-    max-width: 600px;
+    width: min(100%, 650px);
+
     text-align: center;
 }
 
 .game-start-content h2 {
-    color: #b00000;
-    font-size: clamp(30px, 8vw, 55px);
-    letter-spacing: 4px;
+    color: #eee;
+
+    margin-bottom: 25px;
 }
 
-.game-start-content p {
-    color: #999;
-    line-height: 1.8;
-    margin-top: 15px;
+.game-start-content p:not(.small-title):not(.final-text) {
+    color: #888;
+
+    margin-top: 12px;
+
+    line-height: 1.6;
 }
 
 .blood-line {
-    width: 100px;
+    width: 100%;
+
+    max-width: 350px;
+
     height: 1px;
 
-    background: #8d0000;
-
     margin: 25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8d1616,
+            transparent
+        );
 }
 
 .final-text {
-    color: #ddd !important;
-    margin-top: 30px !important;
+    margin-top: 30px;
+
+    color: #aaa;
+
+    font-style: italic;
+
+    line-height: 1.7;
 }
 
+/* ======================================================
+   RESPONSIVIDADE — TABLET
+   ====================================================== */
 
-/* =========================
-   CELULAR
-========================= */
+@media (max-width: 900px) {
+
+    .character-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        max-width: 650px;
+    }
+
+    .character-profile {
+        grid-template-columns: 260px 1fr;
+
+        gap: 30px;
+    }
+
+    .profile-image {
+        width: 260px;
+        height: 380px;
+    }
+
+    .profile-image img {
+        height: 350px;
+    }
+}
+
+/* ======================================================
+   RESPONSIVIDADE — CELULAR
+   ====================================================== */
 
 @media (max-width: 600px) {
 
     .screen {
-        padding: 30px 15px;
+        padding: 35px 18px;
     }
 
-    .elements-grid {
-        grid-template-columns: 1fr;
-    }
+    /* INTRO */
 
-    .element {
-        min-height: 135px;
-    }
-
-    .character-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #characterDetails {
-        padding: 20px;
+    .intro-symbol {
+        font-size: 3rem;
     }
 
     #intro h1 {
-        letter-spacing: 4px;
+        font-size: 2.5rem;
     }
-  }
+
+    .subtitle {
+        font-size: 0.9rem;
+
+        max-width: 320px;
+    }
+
+    /* ELEMENTOS */
+
+    .elements-grid {
+        grid-template-columns: 1fr;
+
+        width: min(100%, 350px);
+
+        gap: 14px;
+    }
+
+    .element {
+        min-height: 150px;
+
+        padding: 20px;
+    }
+
+    .element-symbol {
+        font-size: 2rem;
+    }
+
+    /* PERSONAGENS */
+
+    .character-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .character-card {
+        min-height: 290px;
+    }
+
+    .character-image-container {
+        height: 190px;
+    }
+
+    .character-image {
+        height: 180px;
+    }
+
+    .character-info {
+        padding: 12px 8px;
+    }
+
+    .character-trait {
+        font-size: 0.6rem;
+
+        letter-spacing: 2px;
+    }
+
+    .character-info h3 {
+        font-size: 0.95rem;
+    }
+
+    .character-info p {
+        font-size: 0.7rem;
+    }
+
+    /* FICHA */
+
+    #characterInfo {
+        padding-top: 75px;
+    }
+
+    .back-button {
+        top: 25px;
+        left: 20px;
+    }
+
+    .character-profile {
+        width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .profile-image {
+        width: min(100%, 280px);
+        height: 330px;
+
+        margin: 0 auto;
+    }
+
+    .profile-image img {
+        height: 310px;
+    }
+
+    .profile-text {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .profile-text h1 {
+        text-align: center;
+
+        font-size: 2.2rem;
+    }
+
+    .profile-trait {
+        margin-top: 5px;
+    }
+
+    .quote {
+        text-align: left;
+    }
+
+    .profile-text .description {
+        text-align: left;
+    }
+
+    .ability {
+        text-align: left;
+    }
+
+    #confirmCharacter {
+        width: 100%;
+
+        max-width: 350px;
+    }
+
+    /* INÍCIO */
+
+    .game-start-content {
+        max-width: 350px;
+    }
+
+    .game-start-content h2 {
+        font-size: 2rem;
+    }
+
+    .final-text {
+        font-size: 0.95rem;
+    }
+}
+
+/* ======================================================
+   CELULARES MUITO PEQUENOS
+   ====================================================== */
+
+@media (max-width: 380px) {
+
+    .character-grid {
+        gap: 8px;
+    }
+
+    .character-card {
+        min-height: 260px;
+    }
+
+    .character-image-container {
+        height: 165px;
+    }
+
+    .character-image {
+        height: 155px;
+    }
+
+    .character-info {
+        padding: 10px 5px;
+    }
+
+    .character-info h3 {
+        font-size: 0.85rem;
+    }
+
+    .character-trait {
+        font-size: 0.55rem;
+    }
+    }
