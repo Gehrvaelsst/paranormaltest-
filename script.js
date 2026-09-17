@@ -1,5 +1,6 @@
 // ======================================================
-// SIGA O SANGUE — SCRIPT PRINCIPAL
+// SIGA O SANGUE — SCRIPT.JS
+// ESCOLHA + MAPA + MOVIMENTAÇÃO MOBILE
 // ======================================================
 
 const characters = [
@@ -62,7 +63,7 @@ const characters = [
 
 
 // ======================================================
-// FUNÇÃO PARA TROCAR DE TELA
+// CONTROLE DAS TELAS
 // ======================================================
 
 function showScreen(id) {
@@ -83,22 +84,30 @@ function showScreen(id) {
 // COMEÇAR
 // ======================================================
 
-document.getElementById("startButton").addEventListener("click", () => {
+const startButton = document.getElementById("startButton");
 
-    showScreen("elements");
+if (startButton) {
 
-});
+    startButton.addEventListener("click", () => {
+        showScreen("elements");
+    });
+
+}
 
 
 // ======================================================
-// ESCOLHER SANGUE
+// ELEMENTO SANGUE
 // ======================================================
 
-document.querySelector(".element.blood").addEventListener("click", () => {
+const bloodElement = document.querySelector(".element.blood");
 
-    showCharacters();
+if (bloodElement) {
 
-});
+    bloodElement.addEventListener("click", () => {
+        showCharacters();
+    });
+
+}
 
 
 // ======================================================
@@ -124,6 +133,8 @@ function showCharacters() {
 
     const grid = document.getElementById("characterGrid");
 
+    if (!grid) return;
+
     grid.innerHTML = "";
 
     characters.forEach(character => {
@@ -133,7 +144,6 @@ function showCharacters() {
         card.className = "character-card";
 
         card.innerHTML = `
-
             <div class="character-image-container">
 
                 <img
@@ -159,7 +169,6 @@ function showCharacters() {
                 </p>
 
             </div>
-
         `;
 
         card.addEventListener("click", () => {
@@ -184,8 +193,9 @@ function selectCharacter(character) {
 
     window.selectedCharacter = character;
 
-    const details =
-        document.getElementById("characterDetails");
+    const details = document.getElementById("characterDetails");
+
+    if (!details) return;
 
     details.innerHTML = `
 
@@ -249,38 +259,566 @@ function selectCharacter(character) {
 
 
 // ======================================================
-// VOLTAR
+// VOLTAR PARA PERSONAGENS
 // ======================================================
 
-document.getElementById("backCharacters").addEventListener("click", () => {
+const backCharacters = document.getElementById("backCharacters");
 
-    showScreen("characters");
+if (backCharacters) {
 
-});
+    backCharacters.addEventListener("click", () => {
+
+        showScreen("characters");
+
+    });
+
+}
 
 
 // ======================================================
 // CONFIRMAR PERSONAGEM
 // ======================================================
 
-document.getElementById("confirmCharacter").addEventListener("click", () => {
+const confirmCharacter = document.getElementById("confirmCharacter");
 
-    if (!window.selectedCharacter) return;
+if (confirmCharacter) {
 
-    document.getElementById("chosenName").textContent =
-        window.selectedCharacter.name;
+    confirmCharacter.addEventListener("click", () => {
 
-    showScreen("gameStart");
+        if (!window.selectedCharacter) return;
 
-});
+        const chosenName = document.getElementById("chosenName");
+
+        if (chosenName) {
+
+            chosenName.textContent =
+                window.selectedCharacter.name;
+
+        }
+
+        showScreen("gameStart");
+
+    });
+
+}
 
 
 // ======================================================
-// CONTINUAR
+// ENTRAR NO MAPA
 // ======================================================
 
-document.getElementById("continueButton").addEventListener("click", () => {
+const continueButton = document.getElementById("continueButton");
 
-    alert("O próximo capítulo ainda está sendo desenvolvido.");
+if (continueButton) {
 
-});
+    continueButton.addEventListener("click", () => {
+
+        if (!window.selectedCharacter) return;
+
+        showScreen("map");
+
+        iniciarMapa();
+
+    });
+
+}
+
+
+// ======================================================
+// MAPA
+// ======================================================
+
+let mapaIniciado = false;
+
+let playerX = 0;
+let playerY = 0;
+
+let joystickAtivo = false;
+
+let joystickStartX = 0;
+let joystickStartY = 0;
+
+let joystickX = 0;
+let joystickY = 0;
+
+let animationFrame;
+
+
+// ======================================================
+// INICIAR MAPA
+// ======================================================
+
+function iniciarMapa() {
+
+    const map = document.getElementById("map");
+
+    if (!map) {
+
+        console.log("Mapa ainda não foi criado no HTML.");
+
+        return;
+
+    }
+
+    const player = document.getElementById("mapPlayer");
+
+    if (!player) return;
+
+
+    // Coloca o personagem no começo do mapa
+
+    playerX = 120;
+    playerY = 120;
+
+
+    atualizarPlayer();
+
+
+    if (mapaIniciado) return;
+
+    mapaIniciado = true;
+
+
+    configurarJoystick();
+
+    configurarTeclado();
+
+
+    iniciarLoop();
+
+}
+
+
+// ======================================================
+// ATUALIZAR POSIÇÃO
+// ======================================================
+
+function atualizarPlayer() {
+
+    const player = document.getElementById("mapPlayer");
+
+    if (!player) return;
+
+    player.style.left = playerX + "px";
+
+    player.style.top = playerY + "px";
+
+}
+
+
+// ======================================================
+// LOOP DE MOVIMENTO
+// ======================================================
+
+function iniciarLoop() {
+
+    function loop() {
+
+        if (joystickAtivo) {
+
+            const distancia = Math.sqrt(
+                joystickX * joystickX +
+                joystickY * joystickY
+            );
+
+            if (distancia > 5) {
+
+                const normalX = joystickX / distancia;
+
+                const normalY = joystickY / distancia;
+
+                const velocidade = 2.5;
+
+                playerX += normalX * velocidade;
+
+                playerY += normalY * velocidade;
+
+            }
+
+        }
+
+        limitarPlayer();
+
+        atualizarPlayer();
+
+        animationFrame = requestAnimationFrame(loop);
+
+    }
+
+    loop();
+
+}
+
+
+// ======================================================
+// LIMITES DO MAPA
+// ======================================================
+
+function limitarPlayer() {
+
+    const map = document.getElementById("map");
+
+    const player = document.getElementById("mapPlayer");
+
+    if (!map || !player) return;
+
+
+    const limiteX =
+        map.clientWidth - player.offsetWidth;
+
+    const limiteY =
+        map.clientHeight - player.offsetHeight;
+
+
+    if (playerX < 0) {
+        playerX = 0;
+    }
+
+    if (playerY < 0) {
+        playerY = 0;
+    }
+
+    if (playerX > limiteX) {
+        playerX = limiteX;
+    }
+
+    if (playerY > limiteY) {
+        playerY = limiteY;
+    }
+
+}
+
+
+// ======================================================
+// JOYSTICK MOBILE
+// ======================================================
+
+function configurarJoystick() {
+
+    const joystick =
+        document.getElementById("joystick");
+
+    const knob =
+        document.getElementById("joystickKnob");
+
+
+    if (!joystick || !knob) return;
+
+
+    joystick.addEventListener(
+        "touchstart",
+        iniciarJoystick,
+        { passive: false }
+    );
+
+
+    joystick.addEventListener(
+        "touchmove",
+        moverJoystick,
+        { passive: false }
+    );
+
+
+    joystick.addEventListener(
+        "touchend",
+        pararJoystick,
+        { passive: false }
+    );
+
+
+    joystick.addEventListener(
+        "touchcancel",
+        pararJoystick,
+        { passive: false }
+    );
+
+
+    // Também funciona com mouse
+    // para testar no computador
+
+    joystick.addEventListener(
+        "mousedown",
+        iniciarJoystickMouse
+    );
+
+}
+
+
+// ======================================================
+// INICIAR JOYSTICK
+// ======================================================
+
+function iniciarJoystick(event) {
+
+    event.preventDefault();
+
+    joystickAtivo = true;
+
+    const toque = event.touches[0];
+
+    joystickStartX = toque.clientX;
+
+    joystickStartY = toque.clientY;
+
+}
+
+
+// ======================================================
+// MOVER JOYSTICK
+// ======================================================
+
+function moverJoystick(event) {
+
+    if (!joystickAtivo) return;
+
+    event.preventDefault();
+
+    const toque = event.touches[0];
+
+    const movimentoX =
+        toque.clientX - joystickStartX;
+
+    const movimentoY =
+        toque.clientY - joystickStartY;
+
+
+    const limite = 45;
+
+    const distancia = Math.sqrt(
+        movimentoX * movimentoX +
+        movimentoY * movimentoY
+    );
+
+
+    if (distancia > limite) {
+
+        joystickX =
+            (movimentoX / distancia) * limite;
+
+        joystickY =
+            (movimentoY / distancia) * limite;
+
+    } else {
+
+        joystickX = movimentoX;
+
+        joystickY = movimentoY;
+
+    }
+
+
+    atualizarJoystickVisual();
+
+}
+
+
+// ======================================================
+// PARAR JOYSTICK
+// ======================================================
+
+function pararJoystick(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    joystickAtivo = false;
+
+    joystickX = 0;
+
+    joystickY = 0;
+
+
+    const knob =
+        document.getElementById("joystickKnob");
+
+    if (knob) {
+
+        knob.style.transform =
+            "translate(-50%, -50%)";
+
+    }
+
+}
+
+
+// ======================================================
+// VISUAL DO JOYSTICK
+// ======================================================
+
+function atualizarJoystickVisual() {
+
+    const knob =
+        document.getElementById("joystickKnob");
+
+    if (!knob) return;
+
+
+    knob.style.transform =
+        `translate(
+            calc(-50% + ${joystickX}px),
+            calc(-50% + ${joystickY}px)
+        )`;
+
+}
+
+
+// ======================================================
+// MOUSE — TESTE NO PC
+// ======================================================
+
+function iniciarJoystickMouse(event) {
+
+    joystickAtivo = true;
+
+    joystickStartX = event.clientX;
+
+    joystickStartY = event.clientY;
+
+
+    const mover =
+        (e) => {
+
+            if (!joystickAtivo) return;
+
+            const movimentoX =
+                e.clientX - joystickStartX;
+
+            const movimentoY =
+                e.clientY - joystickStartY;
+
+
+            const limite = 45;
+
+            const distancia = Math.sqrt(
+                movimentoX * movimentoX +
+                movimentoY * movimentoY
+            );
+
+
+            if (distancia > limite) {
+
+                joystickX =
+                    (movimentoX / distancia) * limite;
+
+                joystickY =
+                    (movimentoY / distancia) * limite;
+
+            } else {
+
+                joystickX = movimentoX;
+
+                joystickY = movimentoY;
+
+            }
+
+
+            atualizarJoystickVisual();
+
+        };
+
+
+    const parar =
+        () => {
+
+            pararJoystick();
+
+            document.removeEventListener(
+                "mousemove",
+                mover
+            );
+
+            document.removeEventListener(
+                "mouseup",
+                parar
+            );
+
+        };
+
+
+    document.addEventListener(
+        "mousemove",
+        mover
+    );
+
+    document.addEventListener(
+        "mouseup",
+        parar
+    );
+
+}
+
+
+// ======================================================
+// TECLADO — TESTE NO PC
+// ======================================================
+
+function configurarTeclado() {
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                !document
+                    .getElementById("map")
+                    ?.classList
+                    .contains("active")
+            ) {
+
+                return;
+
+            }
+
+
+            const velocidade = 4;
+
+
+            if (
+                event.key === "ArrowUp" ||
+                event.key.toLowerCase() === "w"
+            ) {
+
+                playerY -= velocidade;
+
+            }
+
+
+            if (
+                event.key === "ArrowDown" ||
+                event.key.toLowerCase() === "s"
+            ) {
+
+                playerY += velocidade;
+
+            }
+
+
+            if (
+                event.key === "ArrowLeft" ||
+                event.key.toLowerCase() === "a"
+            ) {
+
+                playerX -= velocidade;
+
+            }
+
+
+            if (
+                event.key === "ArrowRight" ||
+                event.key.toLowerCase() === "d"
+            ) {
+
+                playerX += velocidade;
+
+            }
+
+
+            limitarPlayer();
+
+            atualizarPlayer();
+
+        }
+    );
+
+}
