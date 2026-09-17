@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIGA O SANGUE</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main id="game">
+
+        <!-- =========================
+             TELA INICIAL
+        ========================== -->
+
+        <section id="intro" class="screen active">
+
+            <div class="intro-symbol">𐌑</div>
+
+            <h1>SIGA O SANGUE</h1>
+
+            <p class="subtitle">
+                Algumas escolhas não são feitas pela razão.
+            </p>
+
+            <button id="startButton" class="main-button">
+                COMEÇAR
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             ESCOLHA DO ELEMENTO
+        ========================== -->
+
+        <section id="elements" class="screen">
+
+            <p class="small-title">O OUTRO LADO TE OBSERVA</p>
+
+            <h2>ESCOLHA SEU ELEMENTO</h2>
+
+            <p class="description">
+                Cada elemento revela uma forma diferente de enxergar o paranormal.
+            </p>
+
+            <div class="elements-grid">
+
+                <button class="element blood" data-element="sangue">
+                    <span class="element-symbol">🩸</span>
+                    <strong>SANGUE</strong>
+                    <small>Sentir</small>
+                </button>
+
+                <button class="element death locked">
+                    <span class="element-symbol">☠</span>
+                    <strong>MORTE</strong>
+                    <small>Bloqueado</small>
+                </button>
+
+                <button class="element knowledge locked">
+                    <span class="element-symbol">∞</span>
+                    <strong>CONHECIMENTO</strong>
+                    <small>Bloqueado</small>
+                </button>
+
+                <button class="element chaos locked">
+                    <span class="element-symbol">⟁</span>
+                    <strong>CAOS</strong>
+                    <small>Bloqueado</small>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PERSONAGENS
+        ========================== -->
+
+        <section id="characters" class="screen">
+
+            <div class="section-header">
+
+                <p class="small-title">ELEMENTO ESCOLHIDO</p>
+
+                <h2 class="blood-title">SANGUE</h2>
+
+                <p>
+                    Não pense. Sinta.
+                </p>
+
+            </div>
+
+            <div id="characterGrid" class="character-grid">
+
+                <!-- personagens criados pelo JavaScript -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FICHA DO PERSONAGEM
+        ========================== -->
+
+        <section id="characterInfo" class="screen">
+
+            <button id="backCharacters" class="back-button">
+                ← VOLTAR
+            </button>
+
+            <div id="characterDetails"></div>
+
+            <button id="confirmCharacter" class="main-button">
+                ESCOLHER ESTE PERSONAGEM
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             INÍCIO DO JOGO
+        ========================== -->
+
+        <section id="gameStart" class="screen">
+
+            <div class="game-start-content">
+
+                <p class="small-title">
+                    SUA HISTÓRIA COMEÇA
+                </p>
+
+                <h2 id="chosenName"></h2>
+
+                <div class="blood-line"></div>
+
+                <p>
+                    Você sente algo estranho.
+                </p>
+
+                <p>
+                    Seu coração acelera.
+                </p>
+
+                <p>
+                    O sangue corre mais rápido.
+                </p>
+
+                <p class="final-text">
+                    E, pela primeira vez, você percebe que alguma coisa está olhando de volta.
+                </p>
+
+                <button id="continueButton" class="main-button">
+                    CONTINUAR
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+  </html>
