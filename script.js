@@ -1,138 +1,81 @@
 // ======================================================
-// SIGA O SANGUE
-// SISTEMA INICIAL
+// SIGA O SANGUE — SCRIPT PRINCIPAL
 // ======================================================
 
-
 const characters = [
-
     {
-        id: 1,
         name: "Kael Vargas",
         age: 19,
-        gender: "Homem",
-
+        gender: "Masculino",
         trait: "RAIVA",
-
-        quote:
-            "Se eu sinto, eu faço. O resto se dane.",
-
-        personality:
+        quote: "Se eu sinto, eu faço. O resto se dane.",
+        description:
             "Impulsivo, agressivo e extremamente leal. Kael age antes de pensar, principalmente quando alguém que ama está em perigo.",
-
-        ability:
-            "Ira Descontrolada",
-
+        ability: "Ira Descontrolada",
         abilityDescription:
-            "Quanto menor sua vida, maior fica sua força de ataque.",
-
-        story:
-            "Kael nunca aprendeu a esconder o que sente. A raiva sempre chegou primeiro. Depois dela, vinham as consequências."
+            "Quanto menor estiver sua vida, maior será sua força.",
+        image: "kael.png"
     },
 
-
     {
-        id: 2,
         name: "Dante Almeida",
         age: 22,
-        gender: "Homem",
-
+        gender: "Masculino",
         trait: "DESEJO",
-
-        quote:
-            "Tudo o que eu quero... eu quero agora.",
-
-        personality:
-            "Carismático, provocador e inconsequente. Dante não gosta de limites e costuma transformar qualquer risco em uma oportunidade.",
-
-        ability:
-            "Desejo Incontrolável",
-
+        quote: "Tudo o que eu quero... eu quero agora.",
+        description:
+            "Carismático, provocador e inconsequente. Dante não gosta de limites e transforma riscos em oportunidades.",
+        ability: "Desejo Incontrolável",
         abilityDescription:
-            "Quanto maior o risco que assume, maior o potencial de seus ataques.",
-
-        story:
-            "Dante sempre acreditou que desejar alguma coisa era motivo suficiente para buscá-la. Até descobrir que algumas coisas também desejam você."
+            "Quanto maior o risco, maior o potencial de ataque.",
+        image: "dante.png"
     },
 
-
     {
-        id: 3,
         name: "Lívia Santos",
         age: 20,
-        gender: "Mulher",
-
+        gender: "Feminino",
         trait: "PAIXÃO",
-
-        quote:
-            "Eu sinto tudo. E tudo me consome.",
-
-        personality:
-            "Intensa, emocional e extremamente leal. Lívia ama com a mesma força com que odeia.",
-
-        ability:
-            "Paixão Selvagem",
-
+        quote: "Eu sinto tudo. E tudo me consome.",
+        description:
+            "Lívia sente tudo intensamente. Ama com força, odeia com força e é extremamente leal a quem ama.",
+        ability: "Paixão Selvagem",
         abilityDescription:
-            "Quando emocionalmente afetada, Lívia recebe um aumento temporário em ataque e defesa.",
-
-        story:
-            "Lívia nunca conseguiu sentir pouco. Para ela, amar alguém sempre significou estar disposta a perder tudo."
+            "Quando emocionalmente afetada, recebe um aumento temporário de ataque e defesa.",
+        image: "livia.png"
     },
 
-
     {
-        id: 4,
         name: "Yasmin Lemos",
         age: 18,
-        gender: "Mulher",
-
+        gender: "Feminino",
         trait: "INSTINTO",
-
-        quote:
-            "Eu não tenho medo. Eu só reajo.",
-
-        personality:
-            "Desconfiada, observadora e extremamente reativa. Yasmin confia mais nos próprios instintos do que nas palavras das pessoas.",
-
-        ability:
-            "Instinto de Sobrevivência",
-
+        quote: "Eu não tenho medo. Eu só reajo.",
+        description:
+            "Observadora e desconfiada. Yasmin confia mais no próprio instinto do que nas palavras das pessoas.",
+        ability: "Instinto de Sobrevivência",
         abilityDescription:
-            "Quando sua vida está baixa, Yasmin recebe maior velocidade e chance de esquiva.",
-
-        story:
-            "Yasmin aprendeu cedo que o corpo percebe coisas que a mente demora para compreender."
+            "Com pouca vida, ganha velocidade e maior chance de esquiva.",
+        image: "yasmin.png"
     }
-
 ];
 
 
-let selectedCharacter = null;
-
-
 // ======================================================
-// TROCA DE TELAS
+// FUNÇÃO PARA TROCAR DE TELA
 // ======================================================
 
 function showScreen(id) {
 
-    const screens = document.querySelectorAll(".screen");
-
-    screens.forEach(screen => {
+    document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
     });
 
-    const target = document.getElementById(id);
+    const screen = document.getElementById(id);
 
-    if (target) {
-        target.classList.add("active");
+    if (screen) {
+        screen.classList.add("active");
     }
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 }
 
 
@@ -140,45 +83,37 @@ function showScreen(id) {
 // COMEÇAR
 // ======================================================
 
-document
-    .getElementById("startButton")
-    .addEventListener("click", () => {
+document.getElementById("startButton").addEventListener("click", () => {
 
-        showScreen("elements");
+    showScreen("elements");
 
-    });
+});
 
 
 // ======================================================
-// ELEMENTO SANGUE
+// ESCOLHER SANGUE
 // ======================================================
 
-document
-    .querySelector(".blood")
-    .addEventListener("click", () => {
+document.querySelector(".element.blood").addEventListener("click", () => {
 
-        showCharacters();
+    showCharacters();
 
-    });
+});
 
 
 // ======================================================
 // ELEMENTOS BLOQUEADOS
 // ======================================================
 
-document
-    .querySelectorAll(".locked")
-    .forEach(element => {
+document.querySelectorAll(".locked").forEach(element => {
 
-        element.addEventListener("click", () => {
+    element.addEventListener("click", () => {
 
-            alert(
-                "Este elemento ainda não foi despertado."
-            );
-
-        });
+        alert("Este elemento ainda está bloqueado.");
 
     });
+
+});
 
 
 // ======================================================
@@ -187,41 +122,43 @@ document
 
 function showCharacters() {
 
-    const grid =
-        document.getElementById("characterGrid");
+    const grid = document.getElementById("characterGrid");
 
     grid.innerHTML = "";
 
     characters.forEach(character => {
 
-        const card =
-            document.createElement("article");
+        const card = document.createElement("div");
 
         card.className = "character-card";
 
         card.innerHTML = `
 
-            <div class="sprite">
+            <div class="character-image-container">
 
-                <div class="sprite-body"></div>
+                <img
+                    src="${character.image}"
+                    alt="${character.name}"
+                    class="character-image"
+                >
 
             </div>
 
-            <h3>
-                ${character.name}
-            </h3>
+            <div class="character-info">
 
-            <p class="age">
-                ${character.gender} • ${character.age} anos
-            </p>
+                <span class="character-trait">
+                    ${character.trait}
+                </span>
 
-            <p class="trait">
-                ${character.trait}
-            </p>
+                <h3>
+                    ${character.name}
+                </h3>
 
-            <p class="quote">
-                "${character.quote}"
-            </p>
+                <p>
+                    ${character.age} anos
+                </p>
+
+            </div>
 
         `;
 
@@ -245,74 +182,61 @@ function showCharacters() {
 
 function selectCharacter(character) {
 
-    selectedCharacter = character;
+    window.selectedCharacter = character;
 
     const details =
         document.getElementById("characterDetails");
 
     details.innerHTML = `
 
-        <div class="profile">
+        <div class="character-profile">
 
-            <div class="big-sprite">
+            <div class="profile-image">
 
-                <div class="sprite-body"></div>
+                <img
+                    src="${character.image}"
+                    alt="${character.name}"
+                >
 
             </div>
 
-            <h2>
-                ${character.name}
-            </h2>
+            <div class="profile-text">
 
-            <p class="profile-age">
-                ${character.gender} • ${character.age} anos
-            </p>
-
-            <p class="profile-quote">
-                "${character.quote}"
-            </p>
-
-            <div class="profile-section">
-
-                <h3>
-                    PERSONALIDADE
-                </h3>
-
-                <p>
-                    ${character.personality}
+                <p class="small-title">
+                    SANGUE
                 </p>
 
-            </div>
+                <h1>
+                    ${character.name}
+                </h1>
 
+                <div class="profile-trait">
+                    ${character.trait}
+                </div>
 
-            <div class="profile-section">
+                <p class="profile-data">
+                    ${character.age} anos • ${character.gender}
+                </p>
 
-                <h3>
-                    HABILIDADE
-                </h3>
+                <p class="quote">
+                    "${character.quote}"
+                </p>
 
-                <p>
+                <p class="description">
+                    ${character.description}
+                </p>
+
+                <div class="ability">
+
                     <strong>
                         ${character.ability}
                     </strong>
-                </p>
 
-                <p>
-                    ${character.abilityDescription}
-                </p>
+                    <p>
+                        ${character.abilityDescription}
+                    </p>
 
-            </div>
-
-
-            <div class="profile-section">
-
-                <h3>
-                    HISTÓRIA
-                </h3>
-
-                <p>
-                    ${character.story}
-                </p>
+                </div>
 
             </div>
 
@@ -325,50 +249,38 @@ function selectCharacter(character) {
 
 
 // ======================================================
-// VOLTAR PARA PERSONAGENS
+// VOLTAR
 // ======================================================
 
-document
-    .getElementById("backCharacters")
-    .addEventListener("click", () => {
+document.getElementById("backCharacters").addEventListener("click", () => {
 
-        showScreen("characters");
+    showScreen("characters");
 
-    });
+});
 
 
 // ======================================================
 // CONFIRMAR PERSONAGEM
 // ======================================================
 
-document
-    .getElementById("confirmCharacter")
-    .addEventListener("click", () => {
+document.getElementById("confirmCharacter").addEventListener("click", () => {
 
-        if (!selectedCharacter) {
-            return;
-        }
+    if (!window.selectedCharacter) return;
 
-        document
-            .getElementById("chosenName")
-            .textContent =
-            selectedCharacter.name;
+    document.getElementById("chosenName").textContent =
+        window.selectedCharacter.name;
 
-        showScreen("gameStart");
+    showScreen("gameStart");
 
-    });
+});
 
 
 // ======================================================
 // CONTINUAR
 // ======================================================
 
-document
-    .getElementById("continueButton")
-    .addEventListener("click", () => {
+document.getElementById("continueButton").addEventListener("click", () => {
 
-        alert(
-            "O próximo capítulo ainda está sendo desenvolvido."
-        );
+    alert("O próximo capítulo ainda está sendo desenvolvido.");
 
-    });
+});
