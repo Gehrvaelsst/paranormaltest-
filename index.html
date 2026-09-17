@@ -2,223 +2,211 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no"
-    >
-
-    <title>SIGA O SANGUE</title>
+    <title>Siga o Sangue</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
-<main id="game">
-
-
     <!-- ==================================================
-         TELA INICIAL
-    =================================================== -->
+         INTRO
+    ================================================== -->
 
     <section id="intro" class="screen active">
 
-        <div class="intro-symbol">𐌑</div>
+        <div class="intro-content">
 
-        <h1>SIGA O SANGUE</h1>
+            <p class="small-title">
+                SIGA O SANGUE
+            </p>
 
-        <p class="subtitle">
-            Algumas escolhas não são feitas pela razão.
-        </p>
+            <h1>
+                Tudo começa<br>
+                com o que você sente.
+            </h1>
 
-        <button id="startButton" class="main-button">
-            COMEÇAR
-        </button>
+            <p>
+                Algumas coisas não podem ser controladas.
+            </p>
+
+            <button id="startButton">
+                COMEÇAR
+            </button>
+
+        </div>
 
     </section>
-
 
 
     <!-- ==================================================
          ESCOLHA DO ELEMENTO
-    =================================================== -->
+    ================================================== -->
 
     <section id="elements" class="screen">
 
-        <p class="small-title">
-            O OUTRO LADO TE OBSERVA
-        </p>
+        <div class="elements-content">
 
-        <h2>
-            ESCOLHA SEU ELEMENTO
-        </h2>
+            <p class="small-title">
+                O QUE EXISTE DENTRO DE VOCÊ?
+            </p>
 
-        <p class="description">
-            Cada elemento revela uma forma diferente de enxergar o paranormal.
-        </p>
+            <h1>
+                ESCOLHA SEU ELEMENTO.
+            </h1>
 
+            <div class="elements-grid">
 
-        <div class="elements-grid">
+                <!-- SANGUE -->
 
+                <div class="element blood">
 
-            <button
-                class="element blood"
-                data-element="sangue"
-            >
+                    <div class="element-symbol">
+                        🩸
+                    </div>
 
-                <span class="element-symbol">
-                    🩸
-                </span>
+                    <h2>
+                        SANGUE
+                    </h2>
 
-                <strong>
-                    SANGUE
-                </strong>
+                    <p>
+                        Tudo o que sentimos.
+                        Tudo em volta do sangue.
+                        Siga o sangue.
+                    </p>
 
-                <small>
-                    Sentir
-                </small>
-
-            </button>
+                </div>
 
 
+                <!-- MORTE -->
 
-            <button class="element death locked">
+                <div class="element locked">
 
-                <span class="element-symbol">
-                    ☠
-                </span>
+                    <div class="element-symbol">
+                        ☠️
+                    </div>
 
-                <strong>
-                    MORTE
-                </strong>
+                    <h2>
+                        MORTE
+                    </h2>
 
-                <small>
-                    Bloqueado
-                </small>
+                    <p>
+                        Este elemento ainda
+                        não está disponível.
+                    </p>
 
-            </button>
-
-
-
-            <button class="element knowledge locked">
-
-                <span class="element-symbol">
-                    ∞
-                </span>
-
-                <strong>
-                    CONHECIMENTO
-                </strong>
-
-                <small>
-                    Bloqueado
-                </small>
-
-            </button>
+                </div>
 
 
+                <!-- CONHECIMENTO -->
 
-            <button class="element chaos locked">
+                <div class="element locked">
 
-                <span class="element-symbol">
-                    ⟁
-                </span>
+                    <div class="element-symbol">
+                        ∞
+                    </div>
 
-                <strong>
-                    CAOS
-                </strong>
+                    <h2>
+                        CONHECIMENTO
+                    </h2>
 
-                <small>
-                    Bloqueado
-                </small>
+                    <p>
+                        Este elemento ainda
+                        não está disponível.
+                    </p>
 
-            </button>
+                </div>
 
+
+                <!-- CAOS -->
+
+                <div class="element locked">
+
+                    <div class="element-symbol">
+                        ⟁
+                    </div>
+
+                    <h2>
+                        CAOS
+                    </h2>
+
+                    <p>
+                        Este elemento ainda
+                        não está disponível.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
     </section>
 
 
-
     <!-- ==================================================
-         PERSONAGENS
-    =================================================== -->
+         ESCOLHA DO PERSONAGEM
+    ================================================== -->
 
     <section id="characters" class="screen">
 
-
-        <div class="section-header">
+        <div class="characters-content">
 
             <p class="small-title">
-                ELEMENTO ESCOLHIDO
-            </p>
-
-            <h2 class="blood-title">
                 SANGUE
-            </h2>
-
-            <p>
-                Não pense. Sinta.
             </p>
 
-        </div>
+            <h1>
+                ESCOLHA SEU PERSONAGEM.
+            </h1>
 
+            <p class="subtitle">
+                Cada pessoa sente o sangue de uma maneira diferente.
+            </p>
 
-        <div
-            id="characterGrid"
-            class="character-grid"
-        >
-
-            <!-- criado pelo JavaScript -->
+            <div id="characterGrid" class="character-grid">
+                <!-- Personagens aparecem pelo JavaScript -->
+            </div>
 
         </div>
 
     </section>
-
 
 
     <!-- ==================================================
-         FICHA DO PERSONAGEM
-    =================================================== -->
+         INFORMAÇÕES DO PERSONAGEM
+    ================================================== -->
 
     <section id="characterInfo" class="screen">
 
+        <div id="characterDetails">
+            <!-- Informações aparecem pelo JavaScript -->
+        </div>
 
-        <button
-            id="backCharacters"
-            class="back-button"
-        >
-            ← VOLTAR
-        </button>
+        <div class="character-buttons">
 
+            <button id="backCharacters">
+                VOLTAR
+            </button>
 
-        <div id="characterDetails"></div>
+            <button id="confirmCharacter">
+                ESCOLHER
+            </button>
 
-
-        <button
-            id="confirmCharacter"
-            class="main-button"
-        >
-            ESCOLHER ESTE PERSONAGEM
-        </button>
-
+        </div>
 
     </section>
-
 
 
     <!-- ==================================================
          INÍCIO DA HISTÓRIA
-    =================================================== -->
+    ================================================== -->
 
     <section id="gameStart" class="screen">
-
 
         <div class="game-start-content">
 
@@ -226,128 +214,77 @@
                 SUA HISTÓRIA COMEÇA
             </p>
 
+            <h1 id="chosenName">
+                Kael Vargas
+            </h1>
 
-            <h2 id="chosenName"></h2>
-
-
-            <div class="blood-line"></div>
-
+            <div class="story-line"></div>
 
             <p>
                 Você sente algo estranho.
             </p>
 
-            <p>
-                Seu coração acelera.
+            <p class="story-description">
+                O ar parece diferente.
+                Há alguma coisa naquele lugar.
+                Alguma coisa que você ainda não consegue explicar.
             </p>
 
-            <p>
-                O sangue corre mais rápido.
-            </p>
-
-
-            <p class="final-text">
-                E, pela primeira vez, você percebe que alguma coisa está olhando de volta.
-            </p>
-
-
-            <button
-                id="continueButton"
-                class="main-button"
-            >
+            <button id="continueButton">
                 CONTINUAR
             </button>
 
         </div>
 
-
     </section>
-
 
 
     <!-- ==================================================
          MAPA
-    =================================================== -->
+    ================================================== -->
 
-    <section
-        id="map"
-        class="screen"
-    >
-
-
-        <!-- CABEÇALHO -->
-
-        <div class="map-header">
-
-            <span>
-                SIGA O SANGUE
-            </span>
-
-            <span id="mapCharacterName">
-                KAEL VARGAS
-            </span>
-
-        </div>
-
-
-
-        <!-- ==================================================
-             ÁREA DO MAPA
-        =================================================== -->
+    <section id="map" class="screen">
 
         <div class="game-map">
 
-
-            <!-- chão -->
+            <!-- CHÃO -->
 
             <div class="map-ground"></div>
 
 
-
-            <!-- paredes -->
+            <!-- BORDA DO MAPA -->
 
             <div class="map-wall wall-top"></div>
-
+            <div class="map-wall wall-bottom"></div>
             <div class="map-wall wall-left"></div>
-
             <div class="map-wall wall-right"></div>
 
-            <div class="map-wall wall-bottom"></div>
+
+            <!-- OBJETOS -->
+
+            <div class="map-object object-1"></div>
+            <div class="map-object object-2"></div>
+            <div class="map-object object-3"></div>
 
 
+            <!-- ÁRVORES -->
 
-            <!-- obstáculos -->
-
-            <div class="map-object object-one"></div>
-
-            <div class="map-object object-two"></div>
-
-            <div class="map-object object-three"></div>
-
-
-
-            <!-- árvores -->
-
-            <div class="tree tree-one">
+            <div class="tree tree-1">
                 🌲
             </div>
 
-            <div class="tree tree-two">
+            <div class="tree tree-2">
                 🌲
             </div>
 
-            <div class="tree tree-three">
+            <div class="tree tree-3">
                 🌲
             </div>
 
 
+            <!-- PERSONAGEM -->
 
-            <!-- personagem -->
-
-            <div
-                id="mapPlayer"
-                class="map-player"
-            >
+            <div id="mapPlayer">
 
                 <img
                     src="kael.png"
@@ -357,503 +294,341 @@
             </div>
 
 
+            <!-- ANALÓGICO -->
 
-            <!-- ==================================================
-                 ANALÓGICO MOBILE
-            =================================================== -->
+            <div id="joystick">
 
-            <div
-                id="joystick"
-                class="joystick"
-                aria-label="Analógico de movimento"
-            >
-
-                <div
-                    id="joystickKnob"
-                    class="joystick-knob"
-                ></div>
+                <div id="joystickKnob"></div>
 
             </div>
 
-
         </div>
-
 
     </section>
 
 
-</main>
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
 
+    <script src="script.js"></script>
 
 
-<!-- ======================================================
-     JAVASCRIPT
-======================================================= -->
+    <!-- ==================================================
+         ESTILO DO MAPA
+    ================================================== -->
 
-<script src="script.js"></script>
+    <style>
 
+        #map {
+            width: 100%;
+            height: 100vh;
+            padding: 0;
+            overflow: hidden;
+            background: #080606;
+            touch-action: none;
+        }
 
-<!-- ======================================================
-     ESTILO ESPECÍFICO DO MAPA
-======================================================= -->
 
-<style>
+        .game-map {
+            position: relative;
 
-#map {
-    padding: 0;
-    min-height: 100vh;
+            width: 100%;
+            height: 100%;
 
-    background: #050202;
+            overflow: hidden;
 
-    overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at center,
+                    #321313 0%,
+                    #170909 45%,
+                    #080303 100%
+                );
+        }
 
-    position: relative;
-}
 
+        .map-ground {
+            position: absolute;
 
-/* ================================
-   CABEÇALHO
-================================ */
+            width: 100%;
+            height: 100%;
 
-.map-header {
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
 
-    position: absolute;
+            background-size: 40px 40px;
 
-    top: 15px;
-    left: 15px;
-    right: 15px;
+            opacity: 0.7;
+        }
 
-    z-index: 50;
 
-    display: flex;
+        /* ==================================================
+           PAREDES
+        ================================================== */
 
-    justify-content: space-between;
+        .map-wall {
+            position: absolute;
+            background: #120707;
+            border: 1px solid rgba(150, 30, 30, 0.5);
+            z-index: 3;
+        }
 
-    align-items: center;
 
-    pointer-events: none;
+        .wall-top {
+            top: 0;
+            left: 0;
 
-    font-size: 11px;
+            width: 100%;
+            height: 18px;
+        }
 
-    letter-spacing: 2px;
 
-    color: #aaa;
+        .wall-bottom {
+            bottom: 0;
+            left: 0;
 
-    text-shadow: 0 2px 5px #000;
-}
+            width: 100%;
+            height: 18px;
+        }
 
 
-/* ================================
-   MAPA
-================================ */
+        .wall-left {
+            top: 0;
+            left: 0;
 
-.game-map {
+            width: 18px;
+            height: 100%;
+        }
 
-    position: relative;
 
-    width: min(100vw, 850px);
+        .wall-right {
+            top: 0;
+            right: 0;
 
-    height: min(100vh, 600px);
+            width: 18px;
+            height: 100%;
+        }
 
-    margin: auto;
 
-    overflow: hidden;
+        /* ==================================================
+           OBSTÁCULOS
+        ================================================== */
 
-    background: #17130f;
+        .map-object {
+            position: absolute;
 
-    border: 1px solid #3b1515;
+            background: #1b0b0b;
 
-    touch-action: none;
-}
+            border: 2px solid rgba(120, 30, 30, 0.7);
 
+            box-shadow:
+                0 0 15px rgba(100, 0, 0, 0.25);
 
-/* chão */
+            z-index: 4;
+        }
 
-.map-ground {
 
-    position: absolute;
+        .object-1 {
+            width: 120px;
+            height: 35px;
 
-    inset: 0;
+            left: 30%;
+            top: 25%;
+        }
 
-    background:
 
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.025) 0px,
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px,
-            transparent 45px
-        ),
+        .object-2 {
+            width: 50px;
+            height: 110px;
 
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.02) 0px,
-            rgba(255,255,255,0.02) 1px,
-            transparent 1px,
-            transparent 45px
-        ),
+            right: 25%;
+            top: 48%;
+        }
 
-        radial-gradient(
-            circle at center,
-            #30251c,
-            #15100d 75%
-        );
 
-}
+        .object-3 {
+            width: 100px;
+            height: 40px;
 
+            left: 18%;
+            bottom: 25%;
+        }
 
-/* ================================
-   PAREDES
-================================ */
 
-.map-wall {
+        /* ==================================================
+           ÁRVORES
+        ================================================== */
 
-    position: absolute;
+        .tree {
+            position: absolute;
 
-    background: #080707;
+            font-size: 38px;
 
-    border: 1px solid #482020;
+            z-index: 5;
 
-    z-index: 5;
+            filter:
+                grayscale(0.8)
+                brightness(0.45);
 
-}
+            user-select: none;
+        }
 
 
-.wall-top {
+        .tree-1 {
+            left: 12%;
+            top: 18%;
+        }
 
-    top: 0;
-    left: 0;
-    right: 0;
 
-    height: 45px;
+        .tree-2 {
+            right: 12%;
+            top: 22%;
+        }
 
-}
 
+        .tree-3 {
+            right: 18%;
+            bottom: 20%;
+        }
 
-.wall-left {
 
-    top: 0;
-    bottom: 0;
-    left: 0;
+        /* ==================================================
+           PERSONAGEM
+        ================================================== */
 
-    width: 35px;
+        #mapPlayer {
+            position: absolute;
 
-}
+            left: 120px;
+            top: 120px;
 
+            width: 58px;
+            height: 72px;
 
-.wall-right {
+            z-index: 10;
 
-    top: 0;
-    bottom: 0;
-    right: 0;
+            pointer-events: none;
 
-    width: 35px;
+            transition:
+                transform 0.05s linear;
+        }
 
-}
 
+        #mapPlayer img {
+            width: 100%;
+            height: 100%;
 
-.wall-bottom {
+            object-fit: contain;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+            image-rendering: pixelated;
 
-    height: 35px;
+            user-select: none;
 
-}
+            filter:
+                drop-shadow(
+                    0 5px 4px rgba(0,0,0,0.7)
+                );
+        }
 
 
-/* ================================
-   OBJETOS
-================================ */
+        /* ==================================================
+           ANALÓGICO
+        ================================================== */
 
-.map-object {
+        #joystick {
+            position: absolute;
 
-    position: absolute;
+            left: 25px;
+            bottom: 25px;
 
-    z-index: 4;
+            width: 120px;
+            height: 120px;
 
-    background: #171111;
+            border-radius: 50%;
 
-    border: 1px solid #4b2020;
+            background:
+                rgba(20, 5, 5, 0.75);
 
-    box-shadow:
-        0 5px 12px rgba(0,0,0,0.6);
+            border:
+                2px solid rgba(170, 50, 50, 0.5);
 
-}
+            box-shadow:
+                inset 0 0 20px rgba(0,0,0,0.6),
+                0 0 15px rgba(100,0,0,0.25);
 
+            z-index: 50;
 
-.object-one {
+            touch-action: none;
 
-    width: 100px;
-    height: 65px;
+            user-select: none;
+        }
 
-    left: 22%;
-    top: 30%;
 
-}
+        #joystickKnob {
+            position: absolute;
 
+            left: 50%;
+            top: 50%;
 
-.object-two {
+            width: 55px;
+            height: 55px;
 
-    width: 70px;
-    height: 100px;
+            border-radius: 50%;
 
-    right: 20%;
-    top: 25%;
+            transform:
+                translate(-50%, -50%);
 
-}
+            background:
+                rgba(100, 25, 25, 0.85);
 
+            border:
+                2px solid rgba(220, 80, 80, 0.7);
 
-.object-three {
+            box-shadow:
+                0 0 12px rgba(120,0,0,0.4);
 
-    width: 120px;
-    height: 45px;
+            pointer-events: none;
+        }
 
-    right: 30%;
-    bottom: 25%;
 
-}
+        /* ==================================================
+           MOBILE
+        ================================================== */
 
+        @media (max-width: 600px) {
 
-/* ================================
-   ÁRVORES
-================================ */
+            #mapPlayer {
+                width: 52px;
+                height: 65px;
+            }
 
-.tree {
 
-    position: absolute;
+            #joystick {
+                width: 110px;
+                height: 110px;
 
-    z-index: 3;
+                left: 20px;
+                bottom: 20px;
+            }
 
-    font-size: 42px;
 
-    filter:
-        grayscale(0.8)
-        brightness(0.45)
-        drop-shadow(0 5px 5px #000);
+            #joystickKnob {
+                width: 50px;
+                height: 50px;
+            }
 
-    pointer-events: none;
+        }
 
-}
-
-
-.tree-one {
-
-    left: 10%;
-    top: 25%;
-
-}
-
-
-.tree-two {
-
-    right: 10%;
-    top: 55%;
-
-}
-
-
-.tree-three {
-
-    left: 35%;
-    bottom: 15%;
-
-}
-
-
-/* ================================
-   PERSONAGEM
-================================ */
-
-.map-player {
-
-    position: absolute;
-
-    z-index: 20;
-
-    width: 65px;
-
-    height: 90px;
-
-    pointer-events: none;
-
-    transition:
-        left 0.05s linear,
-        top 0.05s linear;
-
-}
-
-
-.map-player img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: contain;
-
-    image-rendering: pixelated;
-
-    filter:
-        drop-shadow(
-            0 5px 4px rgba(0,0,0,0.7)
-        );
-
-}
-
-
-/* ================================
-   JOYSTICK
-================================ */
-
-.joystick {
-
-    position: absolute;
-
-    z-index: 100;
-
-    left: 25px;
-
-    bottom: 25px;
-
-    width: 115px;
-
-    height: 115px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(10,10,10,0.55);
-
-    border:
-        2px solid rgba(180,180,180,0.25);
-
-    box-shadow:
-        inset 0 0 20px rgba(0,0,0,0.6),
-        0 5px 15px rgba(0,0,0,0.5);
-
-    touch-action: none;
-
-    user-select: none;
-
-}
-
-
-.joystick-knob {
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 55px;
-    height: 55px;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #777,
-            #333 65%,
-            #181818
-        );
-
-    border:
-        2px solid #777;
-
-    box-shadow:
-        0 4px 10px rgba(0,0,0,0.7);
-
-    pointer-events: none;
-
-}
-
-
-/* ================================
-   MOBILE
-================================ */
-
-@media (max-width: 600px) {
-
-    .game-map {
-
-        width: 100vw;
-
-        height: 100vh;
-
-        border: none;
-
-    }
-
-
-    .joystick {
-
-        width: 105px;
-
-        height: 105px;
-
-        left: 20px;
-
-        bottom: 20px;
-
-    }
-
-
-    .joystick-knob {
-
-        width: 50px;
-
-        height: 50px;
-
-    }
-
-
-    .map-player {
-
-        width: 58px;
-
-        height: 82px;
-
-    }
-
-}
-
-
-/* ================================
-   CELULAR DEITADO
-================================ */
-
-@media (
-    max-width: 900px
-) and (
-    orientation: landscape
-) {
-
-    .game-map {
-
-        width: 100vw;
-
-        height: 100vh;
-
-    }
-
-
-    .joystick {
-
-        left: 18px;
-
-        bottom: 18px;
-
-    }
-
-}
-
-</style>
+    </style>
 
 </body>
 
