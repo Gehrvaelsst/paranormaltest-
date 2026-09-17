@@ -1,0 +1,498 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #050505;
+    color: #eeeeee;
+    font-family: Georgia, "Times New Roman", serif;
+    min-height: 100vh;
+}
+
+button {
+    font-family: inherit;
+}
+
+#game {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(100, 0, 0, 0.18),
+            transparent 55%
+        ),
+        #050505;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 40px 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+#intro {
+    text-align: center;
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.92)
+        );
+}
+
+.intro-symbol {
+    color: #b30000;
+    font-size: 75px;
+    margin-bottom: 20px;
+    text-shadow:
+        0 0 20px rgba(180,0,0,0.6);
+}
+
+#intro h1 {
+    font-size: clamp(38px, 10vw, 75px);
+    letter-spacing: 8px;
+    color: #b00000;
+    text-shadow:
+        0 0 15px rgba(180,0,0,0.5);
+}
+
+.subtitle {
+    margin-top: 18px;
+    color: #999;
+    font-size: 16px;
+    font-style: italic;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.main-button {
+    margin-top: 35px;
+    padding: 15px 35px;
+
+    border: 1px solid #9b0000;
+    background: #0b0b0b;
+    color: #ddd;
+
+    cursor: pointer;
+
+    letter-spacing: 3px;
+    font-size: 14px;
+
+    transition: 0.25s;
+}
+
+.main-button:hover {
+    background: #7d0000;
+    color: white;
+    box-shadow:
+        0 0 20px rgba(180,0,0,0.35);
+}
+
+.back-button {
+    align-self: flex-start;
+
+    border: none;
+    background: none;
+    color: #777;
+
+    cursor: pointer;
+
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.back-button:hover {
+    color: #d00000;
+}
+
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+#elements {
+    text-align: center;
+}
+
+.small-title {
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+#elements h2,
+#characters h2 {
+    font-size: clamp(28px, 7vw, 50px);
+    letter-spacing: 4px;
+}
+
+.description {
+    max-width: 500px;
+    color: #777;
+    margin-top: 12px;
+}
+
+.elements-grid {
+    width: 100%;
+    max-width: 850px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-top: 40px;
+}
+
+.element {
+    min-height: 180px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #252525;
+
+    color: #ddd;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.3s;
+}
+
+.element:hover:not(.locked) {
+    transform: translateY(-4px);
+}
+
+.element-symbol {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.element strong {
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+
+.element small {
+    margin-top: 8px;
+    color: #666;
+}
+
+.blood {
+    border-color: #650000;
+}
+
+.blood:hover {
+    background: #180000;
+    border-color: #c00000;
+    box-shadow:
+        0 0 25px rgba(150,0,0,0.25);
+}
+
+.blood .element-symbol {
+    color: #d00000;
+}
+
+.locked {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   PERSONAGENS
+========================= */
+
+#characters {
+    text-align: center;
+}
+
+.section-header {
+    margin-bottom: 30px;
+}
+
+.blood-title {
+    color: #b00000;
+    text-shadow:
+        0 0 12px rgba(180,0,0,0.4);
+}
+
+.character-grid {
+    width: 100%;
+    max-width: 1000px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.character-card {
+    background:
+        linear-gradient(
+            145deg,
+            #111,
+            #070707
+        );
+
+    border: 1px solid #272727;
+
+    padding: 20px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.character-card:hover {
+    border-color: #8d0000;
+    transform: translateY(-3px);
+}
+
+.sprite {
+    height: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(100,0,0,0.18),
+            transparent 65%
+        );
+}
+
+.sprite-body {
+    position: relative;
+
+    width: 55px;
+    height: 85px;
+
+    background: #151515;
+
+    border: 2px solid #555;
+
+    border-radius: 10px 10px 7px 7px;
+}
+
+.sprite-body::before {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    background: #b88c72;
+
+    border-radius: 50%;
+
+    left: 8px;
+    top: -30px;
+
+    border: 2px solid #222;
+}
+
+.sprite-body::after {
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 8px;
+
+    background: #222;
+
+    left: -10px;
+    top: 35px;
+}
+
+.character-card h3 {
+    color: #eee;
+    letter-spacing: 2px;
+}
+
+.character-card .age {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.character-card .trait {
+    margin-top: 12px;
+    color: #a80000;
+    font-size: 14px;
+}
+
+.character-card .quote {
+    margin-top: 10px;
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+}
+
+
+/* =========================
+   FICHA
+========================= */
+
+#characterInfo {
+    max-width: 800px;
+    margin: auto;
+}
+
+#characterDetails {
+    width: 100%;
+    background: #090909;
+    border: 1px solid #300000;
+    padding: 30px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile .big-sprite {
+    margin: 20px auto;
+
+    width: 100px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile h2 {
+    color: #c00000;
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+.profile .profile-age {
+    color: #777;
+    margin-top: 8px;
+}
+
+.profile-quote {
+    margin: 25px auto;
+    max-width: 500px;
+
+    color: #aaa;
+
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.profile-section {
+    border-top: 1px solid #222;
+    padding-top: 18px;
+    margin-top: 18px;
+}
+
+.profile-section h3 {
+    color: #9e0000;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.profile-section p {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   INÍCIO
+========================= */
+
+.game-start-content {
+    max-width: 600px;
+    text-align: center;
+}
+
+.game-start-content h2 {
+    color: #b00000;
+    font-size: clamp(30px, 8vw, 55px);
+    letter-spacing: 4px;
+}
+
+.game-start-content p {
+    color: #999;
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.blood-line {
+    width: 100px;
+    height: 1px;
+
+    background: #8d0000;
+
+    margin: 25px auto;
+}
+
+.final-text {
+    color: #ddd !important;
+    margin-top: 30px !important;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 30px 15px;
+    }
+
+    .elements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .element {
+        min-height: 135px;
+    }
+
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #characterDetails {
+        padding: 20px;
+    }
+
+    #intro h1 {
+        letter-spacing: 4px;
+    }
+  }
