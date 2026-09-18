@@ -1,161 +1,86 @@
-// ======================================================
-// SIGA O SANGUE — SCRIPT.JS
-// ESCOLHA + MAPA + MOVIMENTAÇÃO MOBILE
-// ======================================================
-
 const characters = [
     {
-        name: "Kael Vargas",
-        age: 19,
-        gender: "Masculino",
-        trait: "RAIVA",
-        quote: "Se eu sinto, eu faço. O resto se dane.",
-        description:
-            "Impulsivo, agressivo e extremamente leal. Kael age antes de pensar, principalmente quando alguém que ama está em perigo.",
-        ability: "Ira Descontrolada",
-        abilityDescription:
-            "Quanto menor estiver sua vida, maior será sua força.",
-        image: "kael.png"
+        name:"Kael Vargas", age:19, gender:"Masculino", trait:"RAIVA",
+        quote:"Se eu sinto, eu faço. O resto se dane.",
+        description:"Impulsivo, agressivo e extremamente leal. Kael age antes de pensar, principalmente quando alguém que ama está em perigo.",
+        ability:"Ira Descontrolada",
+        abilityDescription:"Quanto menor estiver sua vida, maior será sua força.",
+        image:"kael.png"
     },
-
     {
-        name: "Dante Almeida",
-        age: 22,
-        gender: "Masculino",
-        trait: "DESEJO",
-        quote: "Tudo o que eu quero... eu quero agora.",
-        description:
-            "Carismático, provocador e inconsequente. Dante não gosta de limites e transforma riscos em oportunidades.",
-        ability: "Desejo Incontrolável",
-        abilityDescription:
-            "Quanto maior o risco, maior o potencial de ataque.",
-        image: "dante.png"
+        name:"Dante Almeida", age:22, gender:"Masculino", trait:"DESEJO",
+        quote:"Tudo o que eu quero... eu quero agora.",
+        description:"Carismático, provocador e inconsequente. Dante não gosta de limites e transforma riscos em oportunidades.",
+        ability:"Desejo Incontrolável",
+        abilityDescription:"Quanto maior o risco, maior o potencial de ataque.",
+        image:"dante.png"
     },
-
     {
-        name: "Lívia Santos",
-        age: 20,
-        gender: "Feminino",
-        trait: "PAIXÃO",
-        quote: "Eu sinto tudo. E tudo me consome.",
-        description:
-            "Lívia sente tudo intensamente. Ama com força, odeia com força e é extremamente leal a quem ama.",
-        ability: "Paixão Selvagem",
-        abilityDescription:
-            "Quando emocionalmente afetada, recebe um aumento temporário de ataque e defesa.",
-        image: "livia.png"
+        name:"Lívia Santos", age:20, gender:"Feminino", trait:"PAIXÃO",
+        quote:"Eu sinto tudo. E tudo me consome.",
+        description:"Lívia sente tudo intensamente. Ama com força, odeia com força e é extremamente leal a quem ama.",
+        ability:"Paixão Selvagem",
+        abilityDescription:"Quando emocionalmente afetada, recebe um aumento temporário de ataque e defesa.",
+        image:"livia.png"
     },
-
     {
-        name: "Yasmin Lemos",
-        age: 18,
-        gender: "Feminino",
-        trait: "INSTINTO",
-        quote: "Eu não tenho medo. Eu só reajo.",
-        description:
-            "Observadora e desconfiada. Yasmin confia mais no próprio instinto do que nas palavras das pessoas.",
-        ability: "Instinto de Sobrevivência",
-        abilityDescription:
-            "Com pouca vida, ganha velocidade e maior chance de esquiva.",
-        image: "yasmin.png"
+        name:"Yasmin Lemos", age:18, gender:"Feminino", trait:"INSTINTO",
+        quote:"Eu não tenho medo. Eu só reajo.",
+        description:"Observadora e desconfiada. Yasmin confia mais no próprio instinto do que nas palavras das pessoas.",
+        ability:"Instinto de Sobrevivência",
+        abilityDescription:"Com pouca vida, ganha velocidade e maior chance de esquiva.",
+        image:"yasmin.png"
     }
 ];
 
-
-// ======================================================
-// CONTROLE DAS TELAS
-// ======================================================
-
-function showScreen(id) {
-
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
+function showScreen(id){
+    document.querySelectorAll(".screen").forEach(s=>{
+        s.classList.remove("active");
     });
 
-    const screen = document.getElementById(id);
+    const screen=document.getElementById(id);
 
-    if (screen) {
-        screen.classList.add("active");
-    }
+    if(screen) screen.classList.add("active");
 }
 
-
-// ======================================================
-// COMEÇAR
-// ======================================================
-
-const startButton = document.getElementById("startButton");
-
-if (startButton) {
-
-    startButton.addEventListener("click", () => {
-        showScreen("elements");
-    });
-
-}
-
-
-// ======================================================
-// ELEMENTO SANGUE
-// ======================================================
-
-const bloodElement = document.querySelector(".element.blood");
-
-if (bloodElement) {
-
-    bloodElement.addEventListener("click", () => {
-        showCharacters();
-    });
-
-}
-
-
-// ======================================================
-// ELEMENTOS BLOQUEADOS
-// ======================================================
-
-document.querySelectorAll(".locked").forEach(element => {
-
-    element.addEventListener("click", () => {
-
-        alert("Este elemento ainda está bloqueado.");
-
-    });
-
+document.getElementById("startButton")?.addEventListener("click",()=>{
+    showScreen("elements");
 });
 
+document.querySelector(".element.blood")?.addEventListener("click",()=>{
+    showCharacters();
+});
 
-// ======================================================
-// MOSTRAR PERSONAGENS
-// ======================================================
+document.querySelectorAll(".locked").forEach(element=>{
+    element.addEventListener("click",()=>{
+        alert("Este elemento ainda está bloqueado.");
+    });
+});
 
-function showCharacters() {
+function showCharacters(){
 
-    const grid = document.getElementById("characterGrid");
+    const grid=document.getElementById("characterGrid");
 
-    if (!grid) return;
+    if(!grid)return;
 
-    grid.innerHTML = "";
+    grid.innerHTML="";
 
-    characters.forEach(character => {
+    characters.forEach(character=>{
 
-        const card = document.createElement("div");
+        const card=document.createElement("div");
 
-        card.className = "character-card";
+        card.className="character-card";
 
-        card.innerHTML = `
+        card.innerHTML=`
             <div class="character-image-container">
-
                 <img
                     src="${character.image}"
                     alt="${character.name}"
                     class="character-image"
                 >
-
             </div>
 
             <div class="character-info">
-
                 <span class="character-trait">
                     ${character.trait}
                 </span>
@@ -167,47 +92,34 @@ function showCharacters() {
                 <p>
                     ${character.age} anos
                 </p>
-
             </div>
         `;
 
-        card.addEventListener("click", () => {
-
+        card.addEventListener("click",()=>{
             selectCharacter(character);
-
         });
 
         grid.appendChild(card);
-
     });
 
     showScreen("characters");
 }
+function selectCharacter(character){
 
+    window.selectedCharacter=character;
 
-// ======================================================
-// SELECIONAR PERSONAGEM
-// ======================================================
+    const details=document.getElementById("characterDetails");
 
-function selectCharacter(character) {
+    if(!details)return;
 
-    window.selectedCharacter = character;
-
-    const details = document.getElementById("characterDetails");
-
-    if (!details) return;
-
-    details.innerHTML = `
-
+    details.innerHTML=`
         <div class="character-profile">
 
             <div class="profile-image">
-
                 <img
                     src="${character.image}"
                     alt="${character.name}"
                 >
-
             </div>
 
             <div class="profile-text">
@@ -237,7 +149,6 @@ function selectCharacter(character) {
                 </p>
 
                 <div class="ability">
-
                     <strong>
                         ${character.ability}
                     </strong>
@@ -245,496 +156,494 @@ function selectCharacter(character) {
                     <p>
                         ${character.abilityDescription}
                     </p>
-
                 </div>
 
             </div>
 
         </div>
-
     `;
 
     showScreen("characterInfo");
 }
 
+document.getElementById("backCharacters")?.addEventListener("click",()=>{
+    showScreen("characters");
+});
 
-// ======================================================
-// VOLTAR PARA PERSONAGENS
-// ======================================================
+document.getElementById("confirmCharacter")?.addEventListener("click",()=>{
 
-const backCharacters = document.getElementById("backCharacters");
+    if(!window.selectedCharacter)return;
 
-if (backCharacters) {
+    const chosenName=document.getElementById("chosenName");
 
-    backCharacters.addEventListener("click", () => {
-
-        showScreen("characters");
-
-    });
-
-}
-
-
-// ======================================================
-// CONFIRMAR PERSONAGEM
-// ======================================================
-
-const confirmCharacter = document.getElementById("confirmCharacter");
-
-if (confirmCharacter) {
-
-    confirmCharacter.addEventListener("click", () => {
-
-        if (!window.selectedCharacter) return;
-
-        const chosenName = document.getElementById("chosenName");
-
-        if (chosenName) {
-
-            chosenName.textContent =
-                window.selectedCharacter.name;
-
-        }
-
-        showScreen("gameStart");
-
-    });
-
-}
-
-
-// ======================================================
-// ENTRAR NO MAPA
-// ======================================================
-
-const continueButton = document.getElementById("continueButton");
-
-if (continueButton) {
-
-    continueButton.addEventListener("click", () => {
-
-        if (!window.selectedCharacter) return;
-
-        showScreen("map");
-
-        iniciarMapa();
-
-    });
-
-}
-
-
-// ======================================================
-// MAPA
-// ======================================================
-
-let mapaIniciado = false;
-
-let playerX = 0;
-let playerY = 0;
-
-let joystickAtivo = false;
-
-let joystickStartX = 0;
-let joystickStartY = 0;
-
-let joystickX = 0;
-let joystickY = 0;
-
-let animationFrame;
-
-
-// ======================================================
-// INICIAR MAPA
-// ======================================================
-
-function iniciarMapa() {
-
-    const map = document.getElementById("map");
-
-    if (!map) {
-
-        console.log("Mapa ainda não foi criado no HTML.");
-
-        return;
-
+    if(chosenName){
+        chosenName.textContent=window.selectedCharacter.name;
     }
 
-    const player = document.getElementById("mapPlayer");
+    showScreen("gameStart"); 
+});
 
-    if (!player) return;
+document.getElementById("continueButton")?.addEventListener("click",()=>{
+
+    if(!window.selectedCharacter)return;
+
+    showScreen("map");
+
+    iniciarMapa();
+});
 
 
-    // Coloca o personagem no começo do mapa
+// ========================================
+// MAPA
+// ========================================
 
-    playerX = 120;
-    playerY = 120;
+let playerX=120;
+let playerY=120;
 
+let joystickAtivo=false;
+
+let joystickX=0;
+let joystickY=0;
+
+let joystickStartX=0;
+let joystickStartY=0;
+
+let direcaoAtual="frente";
+
+let frameAtual=0;
+
+let andando=false;
+
+let ultimoFrame=0;
+
+let mapaIniciado=false;
+
+let framesKael={
+    frente:[],
+    costas:[],
+    esquerda:[],
+    direita:[]
+};
+
+
+// ========================================
+// TAMANHO DA SPRITE SHEET
+// ========================================
+
+// A kael-walk-sheet.png possui:
+// 4 colunas x 4 linhas
+//
+// Cada frame:
+// 110 x 160 pixels
+
+const FRAME_LARGURA=110;
+const FRAME_ALTURA=160;
+
+const LINHAS={
+    frente:0,
+    costas:1,
+    esquerda:2,
+    direita:3
+};
+
+
+function iniciarMapa(){
+
+    const player=document.getElementById("mapPlayer");
+
+    if(!player)return;
+
+    playerX=120;
+    playerY=120;
+
+    player.style.width="55px";
+    player.style.height="80px";
+
+    carregarSpriteKael();
 
     atualizarPlayer();
 
+    if(mapaIniciado)return;
 
-    if (mapaIniciado) return;
-
-    mapaIniciado = true;
-
+    mapaIniciado=true;
 
     configurarJoystick();
-
     configurarTeclado();
 
-
-    iniciarLoop();
-
+    requestAnimationFrame(loop);
 }
+function carregarSpriteKael(){
 
+    const imagem=new Image();
 
-// ======================================================
-// ATUALIZAR POSIÇÃO
-// ======================================================
+    imagem.src="kael-walk-sheet.png";
 
-function atualizarPlayer() {
+    imagem.onload=()=>{
 
-    const player = document.getElementById("mapPlayer");
+        const direcoes=[
+            "frente",
+            "costas",
+            "esquerda",
+            "direita"
+        ];
 
-    if (!player) return;
+        direcoes.forEach(direcao=>{
 
-    player.style.left = playerX + "px";
+            const linha=LINHAS[direcao];
 
-    player.style.top = playerY + "px";
+            framesKael[direcao]=[];
 
-}
+            for(let coluna=0;coluna<4;coluna++){
 
+                const canvas=document.createElement("canvas");
 
-// ======================================================
-// LOOP DE MOVIMENTO
-// ======================================================
+                canvas.width=FRAME_LARGURA;
+                canvas.height=FRAME_ALTURA;
 
-function iniciarLoop() {
+                const ctx=canvas.getContext("2d");
 
-    function loop() {
+                ctx.imageSmoothingEnabled=false;
 
-        if (joystickAtivo) {
+                ctx.drawImage(
+                    imagem,
 
-            const distancia = Math.sqrt(
-                joystickX * joystickX +
-                joystickY * joystickY
-            );
+                    coluna*FRAME_LARGURA,
+                    linha*FRAME_ALTURA,
 
-            if (distancia > 5) {
+                    FRAME_LARGURA,
+                    FRAME_ALTURA,
 
-                const normalX = joystickX / distancia;
+                    0,
+                    0,
 
-                const normalY = joystickY / distancia;
+                    FRAME_LARGURA,
+                    FRAME_ALTURA
+                );
 
-                const velocidade = 2.5;
-
-                playerX += normalX * velocidade;
-
-                playerY += normalY * velocidade;
-
+                framesKael[direcao].push(
+                    canvas.toDataURL("image/png")
+                );
             }
+        });
 
+        mostrarFrame();
+    };
+}
+
+
+function mostrarFrame(){
+
+    const player=document.getElementById("mapPlayer");
+
+    if(!player)return;
+
+    let imagem=player.querySelector("img");
+
+    if(!imagem){
+
+        imagem=document.createElement("img");
+
+        imagem.alt="Kael";
+
+        imagem.style.width="100%";
+        imagem.style.height="100%";
+
+        imagem.style.objectFit="contain";
+
+        imagem.style.imageRendering="pixelated";
+
+        imagem.style.pointerEvents="none";
+
+        player.appendChild(imagem);
+    }
+
+    const frames=framesKael[direcaoAtual];
+
+    if(!frames || frames.length===0)return;
+
+    imagem.src=frames[frameAtual];
+}
+
+
+function atualizarAnimacao(tempo){
+
+    if(!andando){
+
+        frameAtual=0;
+
+        mostrarFrame();
+
+        return;
+    }
+
+    if(tempo-ultimoFrame>120){
+
+        frameAtual++;
+
+        if(frameAtual>=4){
+            frameAtual=0;
         }
 
-        limitarPlayer();
+        mostrarFrame();
 
-        atualizarPlayer();
-
-        animationFrame = requestAnimationFrame(loop);
-
+        ultimoFrame=tempo;
     }
-
-    loop();
-
 }
 
 
-// ======================================================
-// LIMITES DO MAPA
-// ======================================================
+function atualizarPlayer(){
 
-function limitarPlayer() {
+    const player=document.getElementById("mapPlayer");
 
-    const map = document.getElementById("map");
+    if(!player)return;
 
-    const player = document.getElementById("mapPlayer");
-
-    if (!map || !player) return;
-
-
-    const limiteX =
-        map.clientWidth - player.offsetWidth;
-
-    const limiteY =
-        map.clientHeight - player.offsetHeight;
-
-
-    if (playerX < 0) {
-        playerX = 0;
-    }
-
-    if (playerY < 0) {
-        playerY = 0;
-    }
-
-    if (playerX > limiteX) {
-        playerX = limiteX;
-    }
-
-    if (playerY > limiteY) {
-        playerY = limiteY;
-    }
-
+    player.style.left=playerX+"px";
+    player.style.top=playerY+"px";
 }
 
 
-// ======================================================
-// JOYSTICK MOBILE
-// ======================================================
+function descobrirDirecao(x,y){
 
-function configurarJoystick() {
+    if(Math.abs(x)>Math.abs(y)){
 
-    const joystick =
-        document.getElementById("joystick");
+        if(x>0){
+            direcaoAtual="direita";
+        }else{
+            direcaoAtual="esquerda";
+        }
 
-    const knob =
-        document.getElementById("joystickKnob");
+    }else{
+
+        if(y>0){
+            direcaoAtual="frente";
+        }else{
+            direcaoAtual="costas";
+        }
+    }
+
+    mostrarFrame();
+}
 
 
-    if (!joystick || !knob) return;
+function limitarPlayer(){
 
+    const map=document.getElementById("map");
+
+    const player=document.getElementById("mapPlayer");
+
+    if(!map || !player)return;
+
+    const limiteX=map.clientWidth-player.offsetWidth;
+    const limiteY=map.clientHeight-player.offsetHeight;
+
+    playerX=Math.max(0,Math.min(playerX,limiteX));
+    playerY=Math.max(0,Math.min(playerY,limiteY));
+}
+
+
+function loop(tempo){
+
+    let movendo=false;
+
+    if(joystickAtivo){
+
+        const distancia=Math.sqrt(
+            joystickX*joystickX+
+            joystickY*joystickY
+        );
+
+        if(distancia>5){
+
+            movendo=true;
+
+            const normalX=joystickX/distancia;
+            const normalY=joystickY/distancia;
+
+            const velocidade=2.5;
+
+            playerX+=normalX*velocidade;
+            playerY+=normalY*velocidade;
+
+            descobrirDirecao(
+                joystickX,
+                joystickY
+            );
+        }
+    }
+
+    andando=movendo;
+
+    limitarPlayer();
+
+    atualizarPlayer();
+
+    atualizarAnimacao(tempo);
+
+    requestAnimationFrame(loop);
+}
+function configurarJoystick(){
+
+    const joystick=document.getElementById("joystick");
+
+    if(!joystick)return;
 
     joystick.addEventListener(
         "touchstart",
         iniciarJoystick,
-        { passive: false }
+        {passive:false}
     );
-
 
     joystick.addEventListener(
         "touchmove",
         moverJoystick,
-        { passive: false }
+        {passive:false}
     );
-
 
     joystick.addEventListener(
         "touchend",
         pararJoystick,
-        { passive: false }
+        {passive:false}
     );
-
 
     joystick.addEventListener(
         "touchcancel",
         pararJoystick,
-        { passive: false }
+        {passive:false}
     );
-
-
-    // Também funciona com mouse
-    // para testar no computador
 
     joystick.addEventListener(
         "mousedown",
         iniciarJoystickMouse
     );
-
 }
 
 
-// ======================================================
-// INICIAR JOYSTICK
-// ======================================================
-
-function iniciarJoystick(event) {
+function iniciarJoystick(event){
 
     event.preventDefault();
 
-    joystickAtivo = true;
+    joystickAtivo=true;
 
-    const toque = event.touches[0];
+    const toque=event.touches[0];
 
-    joystickStartX = toque.clientX;
-
-    joystickStartY = toque.clientY;
-
+    joystickStartX=toque.clientX;
+    joystickStartY=toque.clientY;
 }
 
 
-// ======================================================
-// MOVER JOYSTICK
-// ======================================================
+function moverJoystick(event){
 
-function moverJoystick(event) {
-
-    if (!joystickAtivo) return;
+    if(!joystickAtivo)return;
 
     event.preventDefault();
 
-    const toque = event.touches[0];
+    const toque=event.touches[0];
 
-    const movimentoX =
-        toque.clientX - joystickStartX;
+    calcularJoystick(
+        toque.clientX-joystickStartX,
+        toque.clientY-joystickStartY
+    );
+}
 
-    const movimentoY =
-        toque.clientY - joystickStartY;
 
+function calcularJoystick(x,y){
 
-    const limite = 45;
+    const limite=45;
 
-    const distancia = Math.sqrt(
-        movimentoX * movimentoX +
-        movimentoY * movimentoY
+    const distancia=Math.sqrt(
+        x*x+y*y
     );
 
+    if(distancia>limite){
 
-    if (distancia > limite) {
+        joystickX=(x/distancia)*limite;
+        joystickY=(y/distancia)*limite;
 
-        joystickX =
-            (movimentoX / distancia) * limite;
+    }else{
 
-        joystickY =
-            (movimentoY / distancia) * limite;
-
-    } else {
-
-        joystickX = movimentoX;
-
-        joystickY = movimentoY;
-
+        joystickX=x;
+        joystickY=y;
     }
-
 
     atualizarJoystickVisual();
 
+    if(Math.abs(x)>5 || Math.abs(y)>5){
+        descobrirDirecao(x,y);
+    }
 }
 
 
-// ======================================================
-// PARAR JOYSTICK
-// ======================================================
+function pararJoystick(event){
 
-function pararJoystick(event) {
-
-    if (event) {
+    if(event){
         event.preventDefault();
     }
 
-    joystickAtivo = false;
+    joystickAtivo=false;
 
-    joystickX = 0;
+    joystickX=0;
+    joystickY=0;
 
-    joystickY = 0;
+    andando=false;
 
+    frameAtual=0;
 
-    const knob =
-        document.getElementById("joystickKnob");
+    mostrarFrame();
 
-    if (knob) {
+    const knob=document.getElementById("joystickKnob");
 
-        knob.style.transform =
-            "translate(-50%, -50%)";
-
+    if(knob){
+        knob.style.transform=
+            "translate(-50%,-50%)";
     }
-
 }
 
 
-// ======================================================
-// VISUAL DO JOYSTICK
-// ======================================================
+function atualizarJoystickVisual(){
 
-function atualizarJoystickVisual() {
+    const knob=document.getElementById("joystickKnob");
 
-    const knob =
-        document.getElementById("joystickKnob");
+    if(!knob)return;
 
-    if (!knob) return;
-
-
-    knob.style.transform =
+    knob.style.transform=
         `translate(
             calc(-50% + ${joystickX}px),
             calc(-50% + ${joystickY}px)
         )`;
-
 }
 
 
-// ======================================================
-// MOUSE — TESTE NO PC
-// ======================================================
+function iniciarJoystickMouse(event){
 
-function iniciarJoystickMouse(event) {
+    joystickAtivo=true;
 
-    joystickAtivo = true;
+    joystickStartX=event.clientX;
+    joystickStartY=event.clientY;
 
-    joystickStartX = event.clientX;
+    const mover=e=>{
 
-    joystickStartY = event.clientY;
+        if(!joystickAtivo)return;
 
+        calcularJoystick(
+            e.clientX-joystickStartX,
+            e.clientY-joystickStartY
+        );
+    };
 
-    const mover =
-        (e) => {
+    const parar=()=>{
 
-            if (!joystickAtivo) return;
+        pararJoystick();
 
-            const movimentoX =
-                e.clientX - joystickStartX;
+        document.removeEventListener(
+            "mousemove",
+            mover
+        );
 
-            const movimentoY =
-                e.clientY - joystickStartY;
-
-
-            const limite = 45;
-
-            const distancia = Math.sqrt(
-                movimentoX * movimentoX +
-                movimentoY * movimentoY
-            );
-
-
-            if (distancia > limite) {
-
-                joystickX =
-                    (movimentoX / distancia) * limite;
-
-                joystickY =
-                    (movimentoY / distancia) * limite;
-
-            } else {
-
-                joystickX = movimentoX;
-
-                joystickY = movimentoY;
-
-            }
-
-
-            atualizarJoystickVisual();
-
-        };
-
-
-    const parar =
-        () => {
-
-            pararJoystick();
-
-            document.removeEventListener(
-                "mousemove",
-                mover
-            );
-
-            document.removeEventListener(
-                "mouseup",
-                parar
-            );
-
-        };
-
+        document.removeEventListener(
+            "mouseup",
+            parar
+        );
+    };
 
     document.addEventListener(
         "mousemove",
@@ -745,80 +654,88 @@ function iniciarJoystickMouse(event) {
         "mouseup",
         parar
     );
-
 }
 
 
-// ======================================================
-// TECLADO — TESTE NO PC
-// ======================================================
+// ========================================
+// TECLADO
+// ========================================
 
-function configurarTeclado() {
+function configurarTeclado(){
 
     document.addEventListener(
         "keydown",
-        event => {
+        event=>{
 
-            if (
-                !document
-                    .getElementById("map")
-                    ?.classList
-                    .contains("active")
-            ) {
+            const map=document.getElementById("map");
 
+            if(
+                !map ||
+                !map.classList.contains("active")
+            ){
                 return;
-
             }
 
+            let x=0;
+            let y=0;
 
-            const velocidade = 4;
+            const tecla=event.key.toLowerCase();
 
-
-            if (
-                event.key === "ArrowUp" ||
-                event.key.toLowerCase() === "w"
-            ) {
-
-                playerY -= velocidade;
-
+            if(tecla==="w" || event.key==="ArrowUp"){
+                y=-1;
             }
 
-
-            if (
-                event.key === "ArrowDown" ||
-                event.key.toLowerCase() === "s"
-            ) {
-
-                playerY += velocidade;
-
+            if(tecla==="s" || event.key==="ArrowDown"){
+                y=1;
             }
 
-
-            if (
-                event.key === "ArrowLeft" ||
-                event.key.toLowerCase() === "a"
-            ) {
-
-                playerX -= velocidade;
-
+            if(tecla==="a" || event.key==="ArrowLeft"){
+                x=-1;
             }
 
-
-            if (
-                event.key === "ArrowRight" ||
-                event.key.toLowerCase() === "d"
-            ) {
-
-                playerX += velocidade;
-
+            if(tecla==="d" || event.key==="ArrowRight"){
+                x=1;
             }
 
+            if(x!==0 || y!==0){
 
-            limitarPlayer();
+                event.preventDefault();
 
-            atualizarPlayer();
+                playerX+=x*4;
+                playerY+=y*4;
 
+                andando=true;
+
+                descobrirDirecao(x,y);
+
+                limitarPlayer();
+
+                atualizarPlayer();
+            }
         }
     );
 
+
+    document.addEventListener(
+        "keyup",
+        event=>{
+
+            const tecla=event.key.toLowerCase();
+
+            if(
+                tecla==="w" ||
+                tecla==="a" ||
+                tecla==="s" ||
+                tecla==="d" ||
+                event.key.startsWith("Arrow")
+            ){
+
+                andando=false;
+
+                frameAtual=0;
+
+                mostrarFrame();
+            }
+        }
+    );
 }
